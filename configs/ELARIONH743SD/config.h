@@ -23,7 +23,7 @@
 
 #define FC_TARGET_MCU     STM32H743
 
-#define BOARD_NAME        ELARIONH743
+#define BOARD_NAME        ELARIONH743SD
 #define MANUFACTURER_ID   ELARION
 
 #define USE_ACC
@@ -42,14 +42,15 @@
 #define USE_MAG
 #define USE_MAG_LIS2MDL
 
-//Both use PC11, so choose: flash or sdcard blackbox
-#define USE_FLASH
-#define USE_FLASH_M25P16
-#define DEFAULT_BLACKBOX_DEVICE     BLACKBOX_DEVICE_FLASH
+// Flash and SD card share the SPI3 chip select on PC11, so only one of the two
+// blocks below may be enabled at a time.
+// #define USE_FLASH
+// #define USE_FLASH_M25P16
+// #define DEFAULT_BLACKBOX_DEVICE     BLACKBOX_DEVICE_FLASH
 
-// #define USE_SDCARD
-// #define USE_SDCARD_SPI
-// #define DEFAULT_BLACKBOX_DEVICE BLACKBOX_DEVICE_SDCARD
+#define USE_SDCARD
+#define USE_SDCARD_SPI
+#define DEFAULT_BLACKBOX_DEVICE BLACKBOX_DEVICE_SDCARD
 
 
 #define BEEPER_PIN           PA15
@@ -105,12 +106,12 @@
 #define ADC_EXTERNAL3_PIN    PA7  //ADC12  CU2
 
 
-#define FLASH_CS_PIN         PC11
-#define FLASH_SPI_INSTANCE SPI3
+// #define FLASH_CS_PIN         PC11
+// #define FLASH_SPI_INSTANCE SPI3
 
-// #define SDCARD_SPI_CS_PIN    PC11
-// #define SDCARD_SPI_INSTANCE  SPI3
-// #define SDCARD_DETECT_PIN    NONE
+#define SDCARD_SPI_CS_PIN    PC11
+#define SDCARD_SPI_INSTANCE  SPI3
+#define SDCARD_DETECT_PIN    NONE
 
 
 #define PINIO2_PIN           PD10
